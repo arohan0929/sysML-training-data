@@ -1,4 +1,4 @@
 {
     "$schema": "./schema.json",
-    "name": "Requirement Diagram"
+    "name": "Sequence Diagram"
 }
