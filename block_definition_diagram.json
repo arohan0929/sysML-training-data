@@ -12,7 +12,7 @@
         },
         {
             "name": "references",
-            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property "
+            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property indicates a relationship where a block relies on an external structure to fulfill a purpose, such as delivering data or providing a service. This suggests that there is a link between them."
         }
     ],
     "bestPracticesPatterns": [
