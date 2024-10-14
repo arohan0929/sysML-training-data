@@ -2,5 +2,25 @@
     "$schema": "./schema.json",
     "name": "Block Definition Diagram",
     "abbreviation": "bdd",
-    "description": ""
+    "description": "The purpose of a block definition diagram is to display model elements such as blocks, actors, value types, constraint blocks, flow specifications and interfaces that can serve as other model elements that appear on the other eight kinds of SysML diagrams. Elements that appear on a BDD are known as elements of definition. You display the relationships between elements of definition with structural relationships such as associations, generalizations, and dependencies. With these relationships, you often create BDDs that convey decomposition and type classification. The model element type that the diagram frame represents can be any of the following: package, model, modelLibrary, view, block, or constraintBlock. ",
+    "purpose": "",
+    "notations": [
+        {
+            "name": "parts",
+            "description": "There are part properties listed in the parts compartment of a block. A part property represents the structure that's internal to a block. A block is composed of its part properties and this relationship conveys ownership. When you list a part property in the parts compartment of a block, it appears as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If you want the part property to represent an unconstrained number of instances, you can set the multiplicity to 0..*. If no multiplicity is shown for a part property, the default is 1. When a part property has a multiplicity with an upper bound greater than 1 (e.g., 1..2, 0..10,*), we refer to that part property as a collection. ",
+            "examples": ["eps : Electrical Power Subsystem [1]", "backupComputer: Flight Computer [1..2]"]
+        },
+        {
+            "name": "references",
+            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property "
+        }
+    ],
+    "bestPracticesPatterns": [
+        "",
+        ""
+    ],
+    "antiPatterns": [
+        "",
+        ""
+    ]
 }
