@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "enum": ["Requirement Diagram", "Block Definition Diagram", "Internal Block Diagram", "Parametric Diagram", "Package Diagram", "Activity Diagram", "Sequence Diagram", "State Machine Diagram", "Use Case Diagram"], 
+            "description": "The name of the UML block"
+        },
+        "description": {
+            "type": "string",
+            "description": "The description of the UML block"
+        },
+        "purpose": {
+            "type": "string",
+            "description": "The purpose of the UML block"
+        },
+        "bestPracticesPatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The best practices and patterns of the UML block"
+        },
+        "antiPatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The anti-patterns of the UML block"
+        }
+    },
+    "required": ["name", "description", "purpose", "bestPracticesPatterns", "antiPatterns"]
+}
