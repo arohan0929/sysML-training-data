@@ -4,31 +4,73 @@
     "properties": {
         "name": {
             "type": "string",
-            "enum": ["Requirement Diagram", "Block Definition Diagram", "Internal Block Diagram", "Parametric Diagram", "Package Diagram", "Activity Diagram", "Sequence Diagram", "State Machine Diagram", "Use Case Diagram"], 
-            "description": "The name of the UML block"
+            "enum": [
+                "Requirement Diagram",
+                "Block Definition Diagram",
+                "Internal Block Diagram",
+                "Parametric Diagram",
+                "Package Diagram",
+                "Activity Diagram",
+                "Sequence Diagram",
+                "State Machine Diagram",
+                "Use Case Diagram"
+            ],
+            "description": "The name of the SysML block"
+        },
+        "abbreviation": {
+            "type": "string",
+            "description": "The abbreviation of the SysML block"
         },
         "description": {
             "type": "string",
-            "description": "The description of the UML block"
+            "description": "The description of the SysML block"
         },
         "purpose": {
             "type": "string",
-            "description": "The purpose of the UML block"
+            "description": "The purpose of the SysML block"
+        },
+        "notations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "examples": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
         "bestPracticesPatterns": {
             "type": "array",
             "items": {
                 "type": "string"
             },
-            "description": "The best practices and patterns of the UML block"
+            "description": "The best practices and patterns of the SysML block"
         },
         "antiPatterns": {
             "type": "array",
             "items": {
                 "type": "string"
             },
-            "description": "The anti-patterns of the UML block"
+            "description": "The anti-patterns of the SysML block"
         }
     },
-    "required": ["name", "description", "purpose", "bestPracticesPatterns", "antiPatterns"]
+    "required": [
+        "name",
+        "abbreviation",
+        "description",
+        "purpose",
+        "notations",
+        "bestPracticesPatterns",
+        "antiPatterns"
+    ]
 }

@@ -1,0 +1,6 @@
+{
+    "$schema": "./schema.json",
+    "name": "Block Definition Diagram",
+    "abbreviation": "bdd",
+    "description": ""
+}
