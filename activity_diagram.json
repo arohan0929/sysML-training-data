@@ -1,4 +1,50 @@
 {
     "$schema": "./schema.json",
-    "name": "Activity Diagram"
+    "name": "Activity Diagram",
+    "abbreviation": "act",
+    "description": "An activity diagram can display various kinds of actions, enabling you to convey even the most complex behavioral narratives",
+    "purpose": "An activity diagram is a kind of behavior diagram; it’s a dynamic view of the system that expresses sequences of behaviors and event occurrences over time.",
+    "notations": [
+        {
+            "name": "Object Node",
+            "description": "",
+            "examples": []
+        },
+        {
+            "name": "Action Node",
+            "description": "",
+            "examples": []
+        },
+        {
+            "name": "Control Node",
+            "description": "",
+            "examples": []
+        },
+        {
+            "name": "Edges",
+            "description": "",
+            "examples": []
+        },
+        {
+            "name": "Actions",
+            "description": "",
+            "examples": []
+        },
+        {
+            "name": "Activity Partitions",
+            "description": "",
+            "examples": []
+        }
+    ],
+    "bestPracticesPatterns": [
+        "Write an action as a phrase that begins with a strong, unambiguous verb",
+        "Recursively decompose (nest) Activities by alternating between Activity definitions and Call Behavior usages.",
+        "Allocate all Activities and Actions to a Partition that represents a Control Block.",
+        "Allocate Data Blocks or Signals to all Activity Parameters and Action Pins.",
+        "Ensure that all Activities Satisfy at least one Functional Requirement."
+    ],
+    "antiPatterns": [
+        "Do not conflate Block and Activity syntax and semantics.",
+        "Do not conflate State Machine and Activity syntax and semantics."
+    ]
 }
