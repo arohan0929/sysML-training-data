@@ -8,11 +8,32 @@
         {
             "name": "parts",
             "description": "There are part properties listed in the parts compartment of a block. A part property represents the structure that's internal to a block. A block is composed of its part properties and this relationship conveys ownership. When you list a part property in the parts compartment of a block, it appears as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If you want the part property to represent an unconstrained number of instances, you can set the multiplicity to 0..*. If no multiplicity is shown for a part property, the default is 1. When a part property has a multiplicity with an upper bound greater than 1 (e.g., 1..2, 0..10,*), we refer to that part property as a collection. ",
-            "examples": ["eps : Electrical Power Subsystem [1]", "backupComputer: Flight Computer [1..2]"]
+            "examples": ["pss : Power Subsystem [1]", "backupComputer : Navigation Computer [1..3]"]
         },
         {
             "name": "references",
-            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property indicates a relationship where a block relies on an external structure to fulfill a purpose, such as delivering data or providing a service. This suggests that there is a link between them."
+            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property indicates a relationship where a block relies on an external structure to fulfill a purpose, such as delivering data or providing a service. This suggests that there is a link between them. Reference properties appear with a string in the following format: <reference name> : <type> [<multiplicity>]. A reference property inside of a block conveys that the instance of the block needs however many multiplicities of the reference to meet its goals.",
+            "examples": ["pss : Power Subsystem [1]", "rcs : Radio Communication Subsystem [1]"]
+        },
+        {
+            "name": "values",
+            "description": "Value properties are listed in the values compartment of a block and represents a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. The type has to be the name of a value type created in the system model. The multiplicities represents the amount of values that the value property can hold. The default value is not required; when a block with ownership of the value property is created, the default value corresponds to the value that value property will have. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
+            "examples": ["/period : min", "depth : km", "times : Timestamp[0..*]"]
+        }
+        {
+            "name": "constraints",
+            "description": "Constraint properties are listed in the constraints compartment of a block and represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
+            "examples": ["storageCapacity >= truckQuantity * 2"]
+        }
+        {
+            "name": "standard port",
+            "description": "A standard port represents the services that a block gives or needs at an exchange point. Standard ports can have interfaces, which define operations and receptions. Standard ports specify the interaction points that have exhanges of services a block can give or needs",
+            "examples": []
+        }
+        {
+            "name": "flow port",
+            "description": "Flow ports show what kinds of data or things that can flow in or out of a block at an interaction point. Atomic ports are a type of flow port that allow for only one type of item to flow in or out. Nonatomic flow ports allow for multiple types of items to flow.",
+            "examples": []
         }
     ],
     "bestPracticesPatterns": [
