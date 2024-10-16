@@ -2,12 +2,11 @@
     "$schema": "./schema.json",
     "name": "Block Definition Diagram",
     "abbreviation": "bdd",
-    "description": "The purpose of a block definition diagram is to display model elements such as blocks, actors, value types, constraint blocks, flow specifications and interfaces that can serve as other model elements that appear on the other eight kinds of SysML diagrams. Elements that appear on a BDD are known as elements of definition. You display the relationships between elements of definition with structural relationships such as associations, generalizations, and dependencies. With these relationships, you often create BDDs that convey decomposition and type classification. The model element type that the diagram frame represents can be any of the following: package, model, modelLibrary, view, block, or constraintBlock. ",
-    "purpose": "",
+    "description": "Block definition diagrams display all of the model elements in your system. These can include blocks, actors, value types, constraint blocks, flow specifications, and interfaces. These elements are known as elements of definition and the relationships between the elements can be displayed with associations, generalizations, and dependencies, these are called structural relationships.",
     "notations": [
         {
             "name": "parts",
-            "description": "There are part properties listed in the parts compartment of a block. A part property represents the structure that's internal to a block. A block is composed of its part properties and this relationship conveys ownership. When you list a part property in the parts compartment of a block, it appears as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If you want the part property to represent an unconstrained number of instances, you can set the multiplicity to 0..*. If no multiplicity is shown for a part property, the default is 1. When a part property has a multiplicity with an upper bound greater than 1 (e.g., 1..2, 0..10,*), we refer to that part property as a collection. ",
+            "description": "A part property is listed in the part compartment of a block and depicts a structure specific to a block. Blocks are made up of their part properties and this relationship conveys ownership. A part property shows up  as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If there are any amount of instances of the part property, the multiplicity can be set to <0..*>. If a multiplicity is not listed, the default is set to 1. If a part property has a multiplicity with an upper bound greater than 1, it is known as a collection.",
             "examples": ["pss : Power Subsystem [1]", "backupComputer : Navigation Computer [1..3]"]
         },
         {
@@ -19,25 +18,55 @@
             "name": "values",
             "description": "Value properties are listed in the values compartment of a block and represents a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. The type has to be the name of a value type created in the system model. The multiplicities represents the amount of values that the value property can hold. The default value is not required; when a block with ownership of the value property is created, the default value corresponds to the value that value property will have. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
             "examples": ["/period : min", "depth : km", "times : Timestamp[0..*]"]
-        }
+        },
         {
             "name": "constraints",
             "description": "Constraint properties are listed in the constraints compartment of a block and represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
             "examples": ["storageCapacity >= truckQuantity * 2"]
-        }
+        },
         {
             "name": "standard port",
             "description": "A standard port represents the services that a block gives or needs at an exchange point. Standard ports can have interfaces, which define operations and receptions. Standard ports specify the interaction points that have exhanges of services a block can give or needs",
             "examples": []
-        }
+        },
         {
             "name": "flow port",
             "description": "Flow ports show what kinds of data or things that can flow in or out of a block at an interaction point. Atomic ports are a type of flow port that allow for only one type of item to flow in or out. Nonatomic flow ports allow for multiple types of items to flow.",
             "examples": []
+        },
+        {
+            "name": "operations",
+            "description": "An operation is a type of behavior. An operation is something that a block does when the client calls it. The client calling an operation is known as a call event. An operation is displayed as a string in the operations compartment of a block in the following format: <operation name> ( <parameter list> ) : <return type> [<multiplicity>]. The parameters are in a comma-separated list and follows this format: <direction> <parameter name> : <type> [<multiplicity]> = <default value>. The direction can be in, out, or inout.",
+            "examples": []
+        },
+        {
+            "name": "receptions",
+            "description": "Receptions are a type of behavior that a block does when a client does something to call it; this is known as a signal event. When a client performs a signal event it keeps moving, it does not wait for the response. A reception is shown in the following format: <<signal>> <reception name> (<parameter list>). The parameters are shown in the following format: <parameter name> : <type> [<multiplicity>] = <default value>.  ",
+            "examples": []
+        },
+        {
+            "name": "signals",
+            "description": "A signal represents anything that is transferred from one part of the system to another. When a signal moves from the client to the target, it calls the reception. From there, the properties of the signal are inputs to the reception.",
+            "examples": []
+        },
+        {
+            "name": "reference associations",
+            "description": "A reference association says that two blocks can access each other through the system.",
+            "examples": []
+        },
+        {
+            "name": "composite associations",
+            "description": "A composite association says that one block at the composite end of the association notation is made up of one or more of another block at the part end of the association notation.",
+            "examples": []
+        },
+        {
+            "name": "generalizations",
+            "description": ".",
+            "examples": []
         }
     ],
     "bestPracticesPatterns": [
-        "",
+        "When naming operations, start with a verb",
         ""
     ],
     "antiPatterns": [
