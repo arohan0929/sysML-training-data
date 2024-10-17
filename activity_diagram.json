@@ -7,33 +7,33 @@
     "notations": [
         {
             "name": "Object Node",
-            "description": "",
-            "examples": []
+            "description": "models the flow of object tokens through an activity (where each object token represents an instance of matter, energy, or data).",
+            "behaviors": ["Streaming", "Nonstreaming"],
+            "types": ["Pins", "Activity Parameters"],
+            "examples": ["currentAltitude : km [1]", "currentAltitude: km [1] {stream}"]
         },
         {
             "name": "Action Node",
-            "description": "",
-            "examples": []
+            "description": "One kind of node that can exist within an activity; it’s a node that models a basic unit of functionality within the activity. An action represents some form of processing or transformation that will occur when the activity gets executed during system operation.",
+            "types": ["Call Behavior Action", "Send Signal Actions", "Accept Event Actions", "Wait Time Actions"],
+            "examples": ["open telemetry stream : Stream telemetry data", "Orbit Radius Updated", "at (currentCommand, executionTime)"]
         },
         {
             "name": "Control Node",
             "description": "",
+            "types": ["Initial Nodes", "Activity Final Nodes", "Flow Final Nodes", "Decision Nodes", "Merge Nodes", "Fork Nodes", "Join Nodes"],
             "examples": []
         },
         {
             "name": "Edges",
-            "description": "",
-            "examples": []
-        },
-        {
-            "name": "Actions",
-            "description": "",
+            "description": "Edges are used to connect nodes to form ordered sequences in an activity: object flows and control flows.",
+            "types": ["Object Flow", "Control Flow"],
             "examples": []
         },
         {
             "name": "Activity Partitions",
-            "description": "",
-            "examples": []
+            "description": "Activity partitions let you allocate responsibility for the actions in an activity to specific structures within a system",
+            "examples": ["Microcosm Autonomous Navigation System (MANS)", "Propulsion Subsystem", "Flight Computer"]
         }
     ],
     "bestPracticesPatterns": [

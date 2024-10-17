@@ -1,4 +1,38 @@
 {
     "$schema": "./schema.json",
-    "name": "State Machine Diagram"
+    "name": "State Machine Diagram",
+    "abbreviation": "stm",
+    "description": "State machine diagrams are the last of the three kinds of SysML diagrams that you can use to express information about a system’s dynamic behavior.",
+    "purpose": "A state machine diagram is a kind of behavior diagram; like an activity diagram and a sequence diagram, it presents a dynamic view of a system.",
+    "notations": [
+        {
+            "name": "States",
+            "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation.",
+            "types":["Simple States", "Composite States", "Final States", ""],
+            "examples": []
+        },
+        {
+            "name": "Transitions",
+            "description": "A transition represents a change from one state to another.",
+            "types":["Internal Transitions", "External Transitions"],
+            "examples": []
+        },
+        {
+            "name": "Pseudostates",
+            "description": "",
+            "types": ["Initial Pseudostates", "Junction Pseudostates"],
+            "examples": []
+        },
+        {
+            "name": "Regions",
+            "description": "",
+            "examples": ["Orthogonal Regions"]
+        }
+    ],
+    "bestPracticesPatterns": [
+        "Use Activity and Sequence diagrams to specify collaborative dynamic behaviors; use State Machines selectively for time/safety/mission/financial critical objects."
+    ],
+    "antiPatterns": [
+        "Do not conflate State Machine and Activity syntax and semantics."
+    ]
 }
