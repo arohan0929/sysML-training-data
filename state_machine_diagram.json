@@ -8,7 +8,7 @@
         {
             "name": "States",
             "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation.",
-            "types":["Simple States", "Composite States", "Final States", ""],
+            "types":["Simple States", "Composite States", "Final States"],
             "examples": []
         },
         {
