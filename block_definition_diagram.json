@@ -6,22 +6,22 @@
     "notations": [
         {
             "name": "parts",
-            "description": "A part property is listed in the part compartment of a block and depicts a structure specific to a block. Blocks are made up of their part properties and this relationship conveys ownership. A part property shows up  as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If there are any amount of instances of the part property, the multiplicity can be set to <0..*>. If a multiplicity is not listed, the default is set to 1. If a part property has a multiplicity with an upper bound greater than 1, it is known as a collection.",
+            "description": "A part property depicts a structure specific to a block. Blocks are made up of their part properties and this relationship conveys ownership. A part property shows up  as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If there are any amount of instances of the part property, the multiplicity can be set to <0..*>. If a multiplicity is not listed, the default is set to 1. If a part property has a multiplicity with an upper bound greater than 1, it is known as a collection.",
             "examples": ["pss : Power Subsystem [1]", "backupComputer : Navigation Computer [1..3]"]
         },
         {
             "name": "references",
-            "description": "A reference property is listed in the references compartment of a block and represents a structure that's external to a block. A reference property indicates a relationship where a block relies on an external structure to fulfill a purpose, such as delivering data or providing a service. This suggests that there is a link between them. Reference properties appear with a string in the following format: <reference name> : <type> [<multiplicity>]. A reference property inside of a block conveys that the instance of the block needs however many multiplicities of the reference to meet its goals.",
+            "description": "A reference property represents a structure external to a block and indicates a relationship where a block relies on something else to fulfill a purpose, such as delivering data or providing a service. Reference properties appear with a string in the following format: <reference name> : <type> [<multiplicity>].",
             "examples": ["pss : Power Subsystem [1]", "rcs : Radio Communication Subsystem [1]"]
         },
         {
             "name": "values",
-            "description": "Value properties are listed in the values compartment of a block and represents a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. The type has to be the name of a value type created in the system model. The multiplicities represents the amount of values that the value property can hold. The default value is not required; when a block with ownership of the value property is created, the default value corresponds to the value that value property will have. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
+            "description": "Value properties represent a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
             "examples": ["/period : min", "depth : km", "times : Timestamp[0..*]"]
         },
         {
             "name": "constraints",
-            "description": "Constraint properties are listed in the constraints compartment of a block and represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
+            "description": "Constraint properties represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as systems of linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
             "examples": ["storageCapacity >= truckQuantity * 2"]
         },
         {
@@ -61,8 +61,32 @@
         },
         {
             "name": "generalizations",
-            "description": ".",
+            "description": "Generalizations are relationships between elements in a system that communicates one element inherits the properties of another element. The inheriting element is known as the subtype and it takes the properties of an element known as the supertype. The notation for showing a generalization is to put a hollow triangle arrowhead towards the supertype and a solid line from the subtype, this represents that the subtype is a type of the supertype.",
             "examples": []
+        },
+        {
+            "name": "dependencies",
+            "description": "A dependency is a relationship to explain that one element, known as a client, relies on another element, known as a supplier. Dependencies are often not displayed on a block definition diagram, but are most commonly shown on Package Diagrams and Requirement Diagrams. The notation for a dependency is a dashed line from the client to the supplier with an open arrowhead ",
+            "examples": []
+        },
+        {
+            "name": "actors",
+            "description": "Actors are a person or thing that externally interacts with the system you are modeling. Common practice says to use a stick figure to represent a person as an actor and a rectangle with <<actor>> before the name to represent as an actor.",
+            "examples": []
+        },
+        {
+            "name": "value types",
+            "description": "There are three types of value types: primitive, structured, and enumerated. There are four types of primitive value types defined: String, Boolean, Integer, and Real, but additional primitive value types can be defined using generalizations of the four. Structured value types have structure to them unlike primitive value types; this means they have their own value properties. Enumerated value types are put into a list of string values.",
+            "examples": []
+        },
+        {
+            "name": "constraint blocks",
+            "description": "Constraint blocks are elements of definition that model Boolean expressions, oftentimes for mathematical expressions such as linear inequalities. These are used to set allowable values for a system by holding relationships about certain values in a block.",
+            "examples": []
+        },
+        {
+            "name": "comments",
+            "description": "Comments are model elements used to relay information in an unrestricted way, not conforming to other rules. Comments only include a string. Comments are not exclusive to block definition diagrams, but are usable on any of the nine diagram types."
         }
     ],
     "bestPracticesPatterns": [
