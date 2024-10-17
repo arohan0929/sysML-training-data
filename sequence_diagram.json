@@ -1,4 +1,81 @@
 {
     "$schema": "./schema.json",
-    "name": "Sequence Diagram"
+    "name": "Sequence Diagram",
+    "abbreviation": "sd",
+    "description": "Sequence Diagram is an interaction diagram that details how operations are carried out — what messages are sent and when. Sequence diagrams are organized according to time. The time progresses as you go down the page. The objects involved in the operation are listed from left to right according to when they take part in the message sequence.Sequence Diagrams show elements as they interact over time and they are organized according to object (horizontally) and time (vertically)",
+    "purpose": "The purpose of Sequence diagrams is to specify dynamic system behaviors as message-passing collaborations among prototypical Blocks (Parts). When properly applied (See Usage Notes below) Activity diagrams are recursively scalable and simulatable.",
+    "bestPracticesPatterns": [
+        "Recursively decompose (\"nest\") Sequence diagrams by using Combined Fragement References (denoted by ref label)."
+    ],
+    "antiPatterns": [
+        "Define Messages as strings instead of reusing Block and Interface Operations and Signals."
+    ],
+    "dimensions": [
+        {
+            "name": "Object (lifeline) Dimension",
+            "description:": "An object lifeline represents the existence of an object over some time. Objects that exist throughout an interaction should appear at the top of the object dimension with their lifelines drawn parallel to the Time dimension. Objects that are created and destroyed dynamically (transient objects) have object lifelines that begin and end with a receipt of a message. The horizontal axis shows the elements that are involved in the interaction. Conventionally, the objects involved in the operation are listed from left to right according to when they take part in the message sequence. However, the elements on the horizontal axis may appear in any order"
+        },
+        {
+            "name": "Time Dimension",
+            "description": "The vertical axis represents time proceedings (or progressing) down the page."
+        }
+    ],
+    "messages": {
+        "description": "Messages specify communication from one object to another, with an expectation that an activity will be performed by the recipient object. Messages depict the invocation of operations are shown horizontally. They are drawn from the sender to the receiver. Ordering is indicated by the vertical position, with the first message shown at the top of the diagram, and the last message shown at the bottom. As a result, sequence numbers are optional. Messages are often considered to be instantaneous, thus, the time it takes to arrive at the receiver is negligible. The messages are drawn as a horizontal arrow. To indicate that it takes a certain while before the receiver receives a message, a slanted arrow is used. The line type and arrowhead type indicates the type of message is used.",
+        "types": [
+            {
+                "name": "synchronous message",
+                "description": "Shown as a solid line with a filled arrowhead. It is a regular message call used for normal communication between the sender and the receiver."
+            },
+            {
+                "name": "return message",
+                "description": "uses a dashed line with an open arrowhead."
+            },
+            {
+                "name": "asynchronous message",
+                "description": "has a solid line with an open arrowhead. A signal is an asynchronous message that has no reply."
+            },
+            {
+                "name": "constructor message",
+                "description": "creates its receiver. The sender that already exists at the start of the interaction is placed at the top of the diagram. Targets that are created during the interaction by a constructor call are automatically placed further down the diagram."
+            },
+            {
+                "name": "destructor message",
+                "description": "destroys its receiver. There are other ways to indicate that a target is destroyed during an interaction. Only when a target's destruction is set to 'after destructor' do you have to use a destructor."
+            }
+        ]
+    },
+    "logic": {
+        "description": "A common issue with sequence diagrams is how to show looping and conditional behavior. The first thing to point out is that this isn't what sequence diagrams are good at. If you want to show control structures like this, you are better off with an activity diagram or indeed with code itself. Treat sequence diagrams as a visualization of how objects interact rather than as a way of modeling control logic. If you still prefer to model this in a sequence diagram, here's the notation to use. Both loop and conditional use interaction frames, which are ways of marking off a piece of a sequence diagram.",
+        "types": [
+            {
+                "name": "alt",
+                "description": "Alternative multiple fragments: only the one whose condition is true will execute."
+            },
+            {
+                "name": "opt",
+                "description": "Optional: the fragment executes only if the supplied condition is true. Equivalent to an alt only with one trace."
+            },
+            {
+                "name": "par",
+                "description": "Parallel: each fragment is run in parallel."
+            },
+            {
+                "name": "loop",
+                "description": "Loop: the fragment may execute multiple times, and the guard indicates the basis of iteration."
+            },
+            {
+                "name": "region",
+                "description": "Critical region: the fragment can have only one thread executing it at once."
+            },
+            {
+                "name": "neg",
+                "description": "Negative: the fragment shows an invalid interaction."
+            },
+            {
+                "name": "ref",
+                "description": "Reference: refers to an interaction defined in another diagram. The frame is drawn to cover the lifelines involved in the interaction. You can define parameters and return value."
+            }   
+        ]
+    }
 }
