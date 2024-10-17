@@ -90,11 +90,13 @@
         }
     ],
     "bestPracticesPatterns": [
-        "When naming operations, start with a verb",
-        ""
+        "Separate Control Objects, Interface Objects, and Data Objects through applying Object Triad Pattern techniques",
+        "Nest block hierarchies by alternating between block definition diagrams and internal block diagrams",
+        "All control-related activities should be explicitly assigned to Control Object blocks in your system model"
     ],
     "antiPatterns": [
-        "",
-        ""
+        "Combine Control Object, Interface Object, and Data Object Blocks",
+        "Creating Activity Diagrams that focus solely on the flow of functions without using partitions to show which Control Objects are responsible for managing the system's behavior",
+        "Combining the syntax and meaning of Blocks and Activities"
     ]
 }
