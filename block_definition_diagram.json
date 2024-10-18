@@ -3,90 +3,97 @@
     "name": "Block Definition Diagram",
     "abbreviation": "bdd",
     "description": "Block definition diagrams display all of the model elements in your system. These can include blocks, actors, value types, constraint blocks, flow specifications, and interfaces. These elements are known as elements of definition and the relationships between the elements can be displayed with associations, generalizations, and dependencies, these are called structural relationships.",
+    "purpose": "The purpose of Block Definition Diagrams is to specify system static structures that be used for Control Objects, Data Objects, and Interface Objects. When properly applied Block diagrams are recursively scalable and mathematically (parametrically) simulatable.",
     "notations": [
         {
             "name": "parts",
             "description": "A part property depicts a structure specific to a block. Blocks are made up of their part properties and this relationship conveys ownership. A part property shows up  as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If there are any amount of instances of the part property, the multiplicity can be set to <0..*>. If a multiplicity is not listed, the default is set to 1. If a part property has a multiplicity with an upper bound greater than 1, it is known as a collection.",
-            "examples": ["pss : Power Subsystem [1]", "backupComputer : Navigation Computer [1..3]"]
+            "examples": [
+                "pss : Power Subsystem [1]",
+                "backupComputer : Navigation Computer [1..3]"
+            ]
         },
         {
             "name": "references",
             "description": "A reference property represents a structure external to a block and indicates a relationship where a block relies on something else to fulfill a purpose, such as delivering data or providing a service. Reference properties appear with a string in the following format: <reference name> : <type> [<multiplicity>].",
-            "examples": ["pss : Power Subsystem [1]", "rcs : Radio Communication Subsystem [1]"]
+            "examples": [
+                "pss : Power Subsystem [1]",
+                "rcs : Radio Communication Subsystem [1]"
+            ]
         },
         {
             "name": "values",
             "description": "Value properties represent a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
-            "examples": ["/period : min", "depth : km", "times : Timestamp[0..*]"]
+            "examples": [
+                "/period : min",
+                "depth : km",
+                "times : Timestamp[0..*]"
+            ]
         },
         {
             "name": "constraints",
             "description": "Constraint properties represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as systems of linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
-            "examples": ["storageCapacity >= truckQuantity * 2"]
+            "examples": [
+                "storageCapacity >= truckQuantity * 2"
+            ]
         },
         {
             "name": "standard port",
-            "description": "A standard port represents the services that a block gives or needs at an exchange point. Standard ports can have interfaces, which define operations and receptions. Standard ports specify the interaction points that have exhanges of services a block can give or needs",
-            "examples": []
+            "description": "A standard port represents the services that a block gives or needs at an exchange point. Standard ports can have interfaces, which define operations and receptions. Standard ports specify the interaction points that have exhanges of services a block can give or needs"
         },
         {
             "name": "flow port",
-            "description": "Flow ports show what kinds of data or things that can flow in or out of a block at an interaction point. Atomic ports are a type of flow port that allow for only one type of item to flow in or out. Nonatomic flow ports allow for multiple types of items to flow.",
-            "examples": []
+            "description": "Flow ports show what kinds of data or things that can flow in or out of a block at an interaction point. Atomic ports are a type of flow port that allow for only one type of item to flow in or out. Nonatomic flow ports allow for multiple types of items to flow."
         },
         {
             "name": "operations",
-            "description": "An operation is a type of behavior. An operation is something that a block does when the client calls it. The client calling an operation is known as a call event. An operation is displayed as a string in the operations compartment of a block in the following format: <operation name> ( <parameter list> ) : <return type> [<multiplicity>]. The parameters are in a comma-separated list and follows this format: <direction> <parameter name> : <type> [<multiplicity]> = <default value>. The direction can be in, out, or inout.",
-            "examples": []
+            "description": "An operation is a type of behavior. An operation is something that a block does when the client calls it. The client calling an operation is known as a call event. An operation is displayed as a string in the operations compartment of a block in the following format: <operation name> ( <parameter list> ) : <return type> [<multiplicity>]. The parameters are in a comma-separated list and follows this format: <direction> <parameter name> : <type> [<multiplicity]> = <default value>. The direction can be in, out, or inout."
         },
         {
             "name": "receptions",
-            "description": "Receptions are a type of behavior that a block does when a client does something to call it; this is known as a signal event. When a client performs a signal event it keeps moving, it does not wait for the response. A reception is shown in the following format: <<signal>> <reception name> (<parameter list>). The parameters are shown in the following format: <parameter name> : <type> [<multiplicity>] = <default value>.  ",
-            "examples": []
+            "description": "Receptions are a type of behavior that a block does when a client does something to call it; this is known as a signal event. When a client performs a signal event it keeps moving, it does not wait for the response. A reception is shown in the following format: <<signal>> <reception name> (<parameter list>). The parameters are shown in the following format: <parameter name> : <type> [<multiplicity>] = <default value>.  "
         },
         {
             "name": "signals",
-            "description": "A signal represents anything that is transferred from one part of the system to another. When a signal moves from the client to the target, it calls the reception. From there, the properties of the signal are inputs to the reception.",
-            "examples": []
+            "description": "A signal represents anything that is transferred from one part of the system to another. When a signal moves from the client to the target, it calls the reception. From there, the properties of the signal are inputs to the reception."
         },
         {
             "name": "reference associations",
-            "description": "A reference association says that two blocks can access each other through the system.",
-            "examples": []
+            "description": "A reference association says that two blocks can access each other through the system."
         },
         {
             "name": "composite associations",
-            "description": "A composite association says that one block at the composite end of the association notation is made up of one or more of another block at the part end of the association notation.",
-            "examples": []
+            "description": "A composite association says that one block at the composite end of the association notation is made up of one or more of another block at the part end of the association notation."
         },
         {
             "name": "generalizations",
-            "description": "Generalizations are relationships between elements in a system that communicates one element inherits the properties of another element. The inheriting element is known as the subtype and it takes the properties of an element known as the supertype. The notation for showing a generalization is to put a hollow triangle arrowhead towards the supertype and a solid line from the subtype, this represents that the subtype is a type of the supertype.",
-            "examples": []
+            "description": "Generalizations are relationships between elements in a system that communicates one element inherits the properties of another element. The inheriting element is known as the subtype and it takes the properties of an element known as the supertype. The notation for showing a generalization is to put a hollow triangle arrowhead towards the supertype and a solid line from the subtype, this represents that the subtype is a type of the supertype."
         },
         {
             "name": "dependencies",
-            "description": "A dependency is a relationship to explain that one element, known as a client, relies on another element, known as a supplier. Dependencies are often not displayed on a block definition diagram, but are most commonly shown on Package Diagrams and Requirement Diagrams. The notation for a dependency is a dashed line from the client to the supplier with an open arrowhead ",
-            "examples": []
+            "description": "A dependency is a relationship to explain that one element, known as a client, relies on another element, known as a supplier. Dependencies are often not displayed on a block definition diagram, but are most commonly shown on Package Diagrams and Requirement Diagrams. The notation for a dependency is a dashed line from the client to the supplier with an open arrowhead "
         },
         {
             "name": "actors",
-            "description": "Actors are a person or thing that externally interacts with the system you are modeling. Common practice says to use a stick figure to represent a person as an actor and a rectangle with <<actor>> before the name to represent as an actor.",
-            "examples": []
+            "description": "Actors are a person or thing that externally interacts with the system you are modeling. Common practice says to use a stick figure to represent a person as an actor and a rectangle with <<actor>> before the name to represent as an actor."
         },
         {
             "name": "value types",
-            "description": "There are three types of value types: primitive, structured, and enumerated. There are four types of primitive value types defined: String, Boolean, Integer, and Real, but additional primitive value types can be defined using generalizations of the four. Structured value types have structure to them unlike primitive value types; this means they have their own value properties. Enumerated value types are put into a list of string values.",
-            "examples": []
+            "description": "There are three types of value types: primitive, structured, and enumerated. There are four types of primitive value types defined: String, Boolean, Integer, and Real, but additional primitive value types can be defined using generalizations of the four. Structured value types have structure to them unlike primitive value types; this means they have their own value properties. Enumerated value types are put into a list of string values."
         },
         {
             "name": "constraint blocks",
-            "description": "Constraint blocks are elements of definition that model Boolean expressions, oftentimes for mathematical expressions such as linear inequalities. These are used to set allowable values for a system by holding relationships about certain values in a block.",
-            "examples": []
+            "description": "Constraint blocks are elements of definition that model Boolean expressions, oftentimes for mathematical expressions such as linear inequalities. These are used to set allowable values for a system by holding relationships about certain values in a block."
+        }
+    ],
+    "elements of description": [
+        {
+            "name": "block",
+            "description": "Blocks are modular units of system description, and provide a general-purpose capability to model systems as trees of modular components. You may model a block with specific kinds of components, connections between them, and the way these elements combine to define the total system. Each block defines a collection of features to describe a system or other element of interest. These may include both structural and behavioral features, such as properties and operations, to represent the state of the system and behavior that the system may exhibit. According to the SysML specification, blocks can be used throughout all phases of system specification and design, and can be applied to many different kinds of systems. These include modeling either the logical or physical decomposition of a system, and the specification of software, hardware, or human elements. Parts in these systems may interact by many different means, such as software operations, discrete state transitions, flows."
         },
         {
-            "name": "comments",
-            "description": "Comments are model elements used to relay information in an unrestricted way, not conforming to other rules. Comments only include a string. Comments are not exclusive to block definition diagrams, but are usable on any of the nine diagram types."
+            "name": "comment",
+            "description": "A Comment is a textual annotation that can be attached to a set of Elements. A Comment is provided as a definition type and a symbol type that can be drawn on a diagram. A comment gives the ability to attach various remarks to elements. A Comment is shown as a rectangle with the upper right corner bent."
         }
     ],
     "bestPracticesPatterns": [
