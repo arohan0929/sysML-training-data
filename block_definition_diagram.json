@@ -51,7 +51,7 @@
         },
         {
             "name": "receptions",
-            "description": "Receptions are a type of behavior that a block does when a client does something to call it; this is known as a signal event. When a client performs a signal event it keeps moving, it does not wait for the response. A reception is shown in the following format: <<signal>> <reception name> (<parameter list>). The parameters are shown in the following format: <parameter name> : <type> [<multiplicity>] = <default value>.  "
+            "description": "Receptions are a type of behavior that a block does when a client does something to call it; this is known as a signal event. When a client performs a signal event it keeps moving, it does not wait for the response. A reception is shown in the following format: «signal» <reception name> (<parameter list>). The parameters are shown in the following format: <parameter name> : <type> [<multiplicity>] = <default value>.  "
         },
         {
             "name": "signals",
@@ -75,7 +75,7 @@
         },
         {
             "name": "actors",
-            "description": "Actors are a person or thing that externally interacts with the system you are modeling. Common practice says to use a stick figure to represent a person as an actor and a rectangle with <<actor>> before the name to represent as an actor."
+            "description": "Actors are a person or thing that externally interacts with the system you are modeling. Common practice says to use a stick figure to represent a person as an actor and a rectangle with «actor» before the name to represent as an actor."
         },
         {
             "name": "value types",
@@ -86,10 +86,100 @@
             "description": "Constraint blocks are elements of definition that model Boolean expressions, oftentimes for mathematical expressions such as linear inequalities. These are used to set allowable values for a system by holding relationships about certain values in a block."
         }
     ],
-    "elements of description": [
+    "elements of definition": [
         {
             "name": "block",
-            "description": "Blocks are modular units of system description, and provide a general-purpose capability to model systems as trees of modular components. You may model a block with specific kinds of components, connections between them, and the way these elements combine to define the total system. Each block defines a collection of features to describe a system or other element of interest. These may include both structural and behavioral features, such as properties and operations, to represent the state of the system and behavior that the system may exhibit. According to the SysML specification, blocks can be used throughout all phases of system specification and design, and can be applied to many different kinds of systems. These include modeling either the logical or physical decomposition of a system, and the specification of software, hardware, or human elements. Parts in these systems may interact by many different means, such as software operations, discrete state transitions, flows."
+            "description": "Blocks are modular units of system description, and provide a general-purpose capability to model systems as trees of modular components. You may model a block with specific kinds of components, connections between them, and the way these elements combine to define the total system. Each block defines a collection of features to describe a system or other element of interest. These may include both structural and behavioral features, such as properties and operations, to represent the state of the system and behavior that the system may exhibit. According to the SysML specification, blocks can be used throughout all phases of system specification and design, and can be applied to many different kinds of systems. These include modeling either the logical or physical decomposition of a system, and the specification of software, hardware, or human elements. Parts in these systems may interact by many different means, such as software operations, discrete state transitions, flows.",
+            "structural features": [
+                {
+                    "name": "parts",
+                    "description": "A part property depicts a structure specific to a block. Blocks are made up of their part properties and this relationship conveys ownership. A part property shows up  as a string with the following format: <part name> : <type> [<multiplicity>] where the multiplicity is how many of the part exist within the block. If there are any amount of instances of the part property, the multiplicity can be set to <0..*>. If a multiplicity is not listed, the default is set to 1. If a part property has a multiplicity with an upper bound greater than 1, it is known as a collection.",
+                    "examples": [
+                        "pss : Power Subsystem [1]",
+                        "backupComputer : Navigation Computer [1..3]"
+                    ]
+                },
+                {
+                    "name": "references",
+                    "description": "A reference property represents a structure external to a block and indicates a relationship where a block relies on something else to fulfill a purpose, such as delivering data or providing a service. Reference properties appear with a string in the following format: <reference name> : <type> [<multiplicity>].",
+                    "examples": [
+                        "pss : Power Subsystem [1]",
+                        "rcs : Radio Communication Subsystem [1]"
+                    ]
+                },
+                {
+                    "name": "values",
+                    "description": "Value properties represent a quantity, Boolean, or string; it is frequently something that can be assigned a number. Value properties are often used with Parametric Diagrams to create mathmatical models in the system with the usage of constraint properties. Value properties appear with a string in the following format: <value type> : <type> [<multiplicity>] = <default value>. Value properties can be defined or calculated; standard practices say that if the value is calculated, you put a / in front of its name.",
+                    "examples": [
+                        "/period : min",
+                        "depth : km",
+                        "times : Timestamp[0..*]"
+                    ]
+                },
+                {
+                    "name": "constraints",
+                    "description": "Constraint properties represent a mathmatical relationship between a set of value properties. These are used heavily with parametric diagrams to display mathmatical models, such as systems of linear inequalities. Constraint properties inside of a block appear in the following format: <constraint name> : <type>; the type corresponds to a the name of a constraint block that exists somewhere in your system model. If you don't need to use a constraint expression multiple times, it is okay to show a constraint expression directly in the constraints compartment of a block instead of creating a constraint block.",
+                    "examples": [
+                        "storageCapacity >= truckQuantity * 2"
+                    ]
+                },
+                {
+                    "name": "standard port",
+                    "description": "A standard port represents the services that a block gives or needs at an exchange point. Standard ports can have interfaces, which define operations and receptions. Standard ports specify the interaction points that have exhanges of services a block can give or needs"
+                },
+                {
+                    "name": "flow port",
+                    "description": "Flow ports show what kinds of data or things that can flow in or out of a block at an interaction point. Atomic ports are a type of flow port that allow for only one type of item to flow in or out. Nonatomic flow ports allow for multiple types of items to flow."
+                }
+            ],
+            "behavioral features": [
+                {
+                    "name": "operations",
+                    "description": "An operation represents a behavior that a block performs when a client calls it. Stated formally, an operation is invoked by a call event. Most often, an operation represents a synchronous behavior. This means that the caller waits for the behavior to complete before continuing with its own execution. However, SysML doesn't require this; you're free to represent any behavior as an operation - even when the caller doesn't wait for it to complete. You can display an opertaion on a BDD as a string in the operations compartment of a block. That string has the following format: <operation name> ( < parameter list> ) : <return type> [<multiplicity>]. The operation name is modeler defined. The parameter list is a comma-separated list of zero or more parameters. The return type (if any) must be the nae of a value type or block that you've created somewhere in your system model. The multiplicity is a constraint on the number of instances of the return type that the operation can return to the caller when it completes. The parameters in the parameter list represent the inputs or outputs of the operation. Each parameter in the list is displayed with the following format: <direction> <parameter name> : <type> [<multiplicity>] = <defualt value>. The direction can be in, out, or inout. The parameter name is modeler defined. The type must be the name of a value type or block that exists somewhere in your model. The multiplicity is a constraint on the number of instances of the type that the parameter can represent. The default value is the value assigned to the parameter if no value is specified as an argument when the operation is called. It is best practice to always use verb phrases (such as processCommand) to name an operation; an operation represents a behavior after all. Also, don't go overboard with parameter lists; simply adding operations to blocks (without specifying parameters) is often a sufficient degree of model fidelity. If you need to specify parameters for operations within the system model, be judicious about which ones you choose to display on any given BDD; the complete string for an operation could take up a lot of real estate on a BDD if you display even a few parameters."
+                },
+                {
+                    "name": "receptions",
+                    "description": "A reception represents a behavior that a block performs when a client sends a signal that triggers it. Stated formally, is invoked by a signal event. The key distinction between a reception and an operation is that a reception always represents an asynchronous behavior. This means that a client sends a signal - which triggers a reception upon receipt - and inmmediately continues with its own execution; it doesn't wait for the reception to complete (or even necessarily, to begin). Another key point is that a signal is itself a model element. You can use a signal to represent any type of matter, energy, or data that one part of a signal sends to another part - generally for the purpose of triggering a behavior on the receiving end. Like a block, a signal can own properties. Most often, those properties represent data that the signal carries from from a client to a target. And when the signal arrives at the target and triggers a reception, the signal's properties become inputs to that reception. A structure is an eligible target for a signal if it owns a reception that has the same name as the signal. Additionally, the reception must have a parameter with a compatible type for each property of the signal. When you display a reception in the receptions compartment of a block, the string has the following format: «signal» <reception name> ( <parameter list> ). The keyword «signal» must always precede the reception name. As mentioned earlier, the reception name must match the name of the signal in your model that triggers it. You can display as many parameters as necessary in the parameter list. Each parameter in the list is displayed with the following format: <parameter name> : <type> [<multiplicity>] = <default value>. The parameter name is modeler defined. The type must be the name of a value type or block that exists somewhere in your model.The multiplicity is a constraint on the number of instances of the type that the parameter can represent.   The default value is the value assigned to the parameter if no value is provided in the corresponding property of the signal. Unlike operations, receptions cannot have return types. Receptions are asynchronous; the client that sent the signal isn't waiting for a reply. For the same reason, the parameters of a reception can only be inputs and never outputs. "
+                }
+            ],
+            "relationships": [
+                {
+                    "name": "reference assocations",
+                    "description": "A reference association between two blocks means that a connection can exist between instances of those blocks in an operational system. And those instances can access each other for some purpose across the connection. The notation for a reference association on a BDD is a solid line between two blocks. An open arrowhead on exactly one end conveys unidirectional access; the absence of arrowheads on either end conveys bidirectional access. You can optionally display an association name floating near the middle of the line, and you can optionally display a role name and multiplicity on either end of the line. The association name is a modeler-defined string that describes the type of connection that can exist between instances of the two blocks. The role name shown on the end of a reference association corresponds to the name of a reference property—one that belongs to the block at the opposite end and whose type is the block that it's next to. Similarly, the multiplicity shown on the end of a reference association (near a role name) corresponds to the multiplicity of that same reference property. Sometimes a block has multiple reference properties of the same type.You can convey this equivalently by drawing multiple reference associations between the same two blocks. Each reference association represents a distinct reference property. Showing both notations on the same diagram is redundant. The choice to use the references compartment notation versus reference associations depends on how much information you need to expose on the BDD. Another factor in your decision is the need to specify a type for a connector on an IBD. If you intend to do this, then you need to create a reference association between two blocks and give it a name. The compartment notation would not meet your needs in this case."
+                },
+                {
+                    "name": "composite associations",
+                    "description": "A composite association between two blocks conveys structural decomposition. An instance of the block at the composite end is made up of some number of instances of the block at the part end. The notation for a composite association on a BDD is a solid line between two blocks with a solid diamond on the composite end. An open arrowhead on the part end of the line conveys unidirectional access from the composite to its part; the absence of an arrowhead conveys bidirectional access (i.e., the part will have a reference to the composite). The role name shown on the part end of a composite association corresponds to the name of a part property—one that's owned by the block at the composite end and whose type is the block at the part end. It’s redundant to show both the parts compartment notation and composite associations on the same diagram. The multiplicity on the part end of a composite association is not restricted; a composite structure can be made up of an arbitrary number of instances of parts—however many a system requires. However, the multiplicity on the composite end is restricted. A part—by definition—can belong to only one composite at a time. Therefore, the upper bound of the multiplicity on the composite end must always be 1. The lower bound of that multiplicity can be either 0 (zero) or 1. A lower bound of 0 conveys that a part can be removed from its composite structure; a lower bound of 1 conveys that it cannot be removed (it must be attached to a composite structure at all times in a valid instance of a system). You should use a composite association when you need to expose the features of the block that types a part; you should use compartment notation instead when those features are not the focus of the diagram."
+                },
+                {
+                    "name": "generalizations",
+                    "description": "A generalization is another kind of relationship you typically display on BDDs. This relationship conveys inheritance between two elements: a more generalized element, called the supertype, and a more specialized element, the subtype. You use generalizations to create classification trees (type hierarchies) in your system model. The notation for a generalization is a solid line with a hollow, triangular arrowhead on the end of the supertype. This relationship is read in English as “is a type of” going from the subtype to the supertype. When a supertype has more than one subtype shown on the same BDD, modelers often overlap the hollow, triangular arrowheads on the supertype end to conserve space on the diagram. A generalization conveys that a subtype inherits all the features of its supertype: the structural features (properties) and the behavioral features (operations and receptions). In addition to the features it inherits, a subtype may have other features that its supertype doesn’t have. For this reason, modelers often refer to a subtype as a specialization of its supertype. You create generalizations to define abstractions in your system design. A supertype is an abstraction of its subtypes; it factors out those features that are common among the subtypes. Abstractions let you define a common feature (such as the initialize operation) in one place within the model—in the supertype—and that common feature propagates down the type hierarchy to all the subtypes. Then, if you later need to change that common feature, you simply go back to that one place in the model to make the change, and all subtypes in the model get updated instantly. Abstraction is a powerful design principle; it conveys substitutability, meaning that a subtype will be accepted wherever its supertype is required. Building generalizations into your model can significantly reduce the time it takes to modify your system design as the life cycle progresses—and that capability directly translates into cost savings."
+                },
+                {
+                    "name": "dependencies",
+                    "description": "A dependency is the third kind of relationship you can display on BDDs. It means what it sounds like: One element in the model, the client, depends on another element in the model, the supplier. More precisely, a dependency conveys that when the supplier element changes, the client element may also have to change. Most often, you create a dependency between two model elements solely to establish traceability between them. A dependency relationship lets you use your modeling tool to perform automated downstream impact analysis when you make changes to your design. When you make a change to one element, you can query your modeling tool to generate a list of the other elements in the model that may be impacted by the change; the modeling tool navigates the set of dependencies that you’ve created between elements to generate that list. This is a practical reason to create dependencies in your model. However, you seldom have a reason to display them on BDDs. They are part of the structure of the model and not of the system that the model represents. And you will spend most of your time creating BDDs to convey system structure to your stakeholders. When a dependency appears on a BDD, the notation is a dashed line with an open arrowhead, which is drawn from the client to the supplier. Note that SysML defines specialized kinds of dependency relationships (e.g., package import, viewpoint conformance, and several kinds of requirements relationships). Although you rarely display dependencies on BDDs, you often display these specialized kinds of dependencies on package diagrams and requirements diagrams."
+                }
+            ]
+        },
+        {
+            "name": "actor",
+            "description": "An actor represents someone or something that has an external interface with your system. The name of an actor conveys a role played by a person, an organization, or another system when it interacts with your system. SysML defines two notations for an actor: a stick figure and a rectangle with the keyword «actor» preceding the name. Figure 3.24 shows examples of both notations. It’s legal to use either notation for any type of actor—person or system. However, modelers often adopt the convention of using the stick figure notation to represent a person and the rectangle notation to represent a system, although the language doesn't require it. You will occasionally display actors on BDDs to express the generalizations between actors and the associations between actors and blocks. It's far more common, though, to display actors on use case diagrams, where you express which use cases each actor participates in. All the key ideas about generalizations, reference associations, and composite associations also apply when actors are involved in these relationships. There are two constraints: You cannot define a generalization between an actor and a block, and an actor cannot have parts; that is, it cannot appear at the composite end of a composite association. (We always regard an actor as a black box.)"
+        },
+        {
+            "value types": [
+                {
+                    "name": "primitive",
+                    "description": "A primitive value type has no internal structure (it doesn’t own any value properties). Its notation is a rectangle with the stereotype «valueType» preceding the name. SysML defines four primitive value types: String, Boolean, Integer, and Real. You can, of course, define your own primitive value types as specializations (subtypes) of these four."
+                },
+                {
+                    "name": "structured",
+                    "description": "As its name implies, a structured value type has an internal structure—generally two or more value properties. As with a primitive value type, the notation for a structured value type is a rectangle with the stereotype «valueType» preceding the name. SysML defines one structured value type: Complex. Its structure consists of two value properties—realPart and imaginaryPart—that are both of type Real. One structured value type may, in turn, be the type of a value property within another structured value type. In this way, you can create arbitrarily complex systems of value types"
+                },
+                {
+                    "name": "enumerated",
+                    "description": "An enumerated value type—colloquially called an enumeration— simply defines a set of literals (legal values). If a parameter of an operation (or some other kind of element shown in the earlier bulleted list) is typed by an enumeration, then the value it holds at any moment must be one of the literals in that enumeration."
+                }
+            ]
         },
         {
             "name": "comment",
