@@ -4,31 +4,52 @@
     "abbreviation": "stm",
     "description": "State machine diagrams are the last of the three kinds of SysML diagrams that you can use to express information about a system’s dynamic behavior.",
     "purpose": "A state machine diagram is a kind of behavior diagram; like an activity diagram and a sequence diagram, it presents a dynamic view of a system.",
-    "notations": [
-        {
-            "name": "States",
-            "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation.",
-            "types":["Simple States", "Composite States", "Final States"],
-            "examples": []
-        },
-        {
-            "name": "Transitions",
-            "description": "A transition represents a change from one state to another.",
-            "types":["Internal Transitions", "External Transitions"],
-            "examples": []
-        },
-        {
-            "name": "Pseudostates",
-            "description": "",
-            "types": ["Initial Pseudostates", "Junction Pseudostates"],
-            "examples": []
-        },
-        {
-            "name": "Regions",
-            "description": "",
-            "examples": ["Orthogonal Regions"]
-        }
-    ],
+
+    "elements": {
+        "States": [
+            {
+                "name": "Simple States",
+                "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation. The notation for a simple state is a round-cornered rectangle, colloquially referred to as a round-angle."
+            },
+            {
+                "name": "Composite States",
+                "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation. The notation for a composite state is the same as the one for a simple state: a round-cornered rectangle"
+            },
+            {
+                "name": "Final States",
+                "description": "A system (or a part within a system) sometimes has a defined set of states in which it can exist during system operation. The notation for a final state is a small, filled-in circle surrounded by a larger circle."
+            }
+        ],
+
+        "Transitions": [
+            {
+                "name": "Internal Transitions",
+                "description": "A transition represents a change from one state to another. What’s less intuitive is that it can also represent a change from one state back to itself—what SysML calls a self-transition. The notation for a transition is a solid line with an open arrowhead drawn from a source vertex to a target vertex (where source and target may be the same vertex, in the case of a self-transition). The string format for an internal transition is the same as for an external transition. However, the string for an internal transition is displayed in the second compartment of a state (along with the three optional internal behaviors); in contrast to an external transition, the string for an internal transition is not displayed next to an arrow"
+            },
+            {
+                "name": "External Transitions",
+                "description": "A transition represents a change from one state to another. What’s less intuitive is that it can also represent a change from one state back to itself—what SysML calls a self-transition. The notation for a transition is a solid line with an open arrowhead drawn from a source vertex to a target vertex (where source and target may be the same vertex, in the case of a self-transition). The string format for an internal transition is the same as for an external transition. However, the string for an internal transition is displayed in the second compartment of a state (along with the three optional internal behaviors); in contrast to an external transition, the string for an internal transition is not displayed next to an arrow"
+            }
+        ],
+
+        "Pseduostates": [
+            {
+                "name": "Intitial Pseudostates",
+                "description": "You add pseudostates to a state machine to impose control logic on the transitions among states. An initial pseudostate simply indicates the first state that the state machine will be in when it begins executing (or the first substate that a composite state will be in when it becomes active). The notation for an initial pseudostate is a small, filled-in circle."
+            },
+            {
+                "name": "Junction Pseduostates",
+                "description": "You add pseudostates to a state machine to impose control logic on the transitions among states. A junction pseudostate enables you to combine multiple transitions between states into a single (more readable) compound transition. The notation for a junction pseudostate is also a small, filled-in circle—often smaller than an initial pseudostate (though this depends on the modeling tool you’re using)."
+            }
+        ],
+
+        "Regions": [
+            {
+                "name": "Orthogonal Regions",
+                "description": "Like an activity and an interaction, a state machine can convey concurrent behaviors. You do this by adding multiple regions to the state machine. Each region contains its own set of vertices and transitions. And each region responds to event occurrences independently of the others. For this reason, we describe regions as orthogonal to each other. You convey that a state machine has multiple regions by using dashed lines that divide the contents area of the state machine diagram."
+            }
+        ]
+    },
     "bestPracticesPatterns": [
         "Use Activity and Sequence diagrams to specify collaborative dynamic behaviors; use State Machines selectively for time/safety/mission/financial critical objects."
     ],
