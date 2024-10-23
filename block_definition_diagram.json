@@ -1,10 +1,13 @@
 {
-    "$schema": "./schema.json",
-    "name": "Block Definition Diagram",
-    "abbreviation": "bdd",
-    "description": "Block definition diagrams display all of the model elements in your system. These can include blocks, actors, value types, constraint blocks, flow specifications, and interfaces. These elements are known as elements of definition and the relationships between the elements can be displayed with associations, generalizations, and dependencies, these are called structural relationships.",
-    "purpose": "The purpose of Block Definition Diagrams is to specify system static structures that be used for Control Objects, Data Objects, and Interface Objects. When properly applied Block diagrams are recursively scalable and mathematically (parametrically) simulatable.",
-    "model elements": [
+    "nodes": [
+        {
+            "name": "Block Definition Diagram",
+            "abbreviation": "bdd",
+            "description": "Block definition diagrams display all of the model elements in your system. These can include blocks, actors, value types, constraint blocks, flow specifications, and interfaces. These elements are known as elements of definition and the relationships between the elements can be displayed with associations, generalizations, and dependencies, these are called structural relationships.",
+            "purpose": "The purpose of Block Definition Diagrams is to specify system static structures that be used for Control Objects, Data Objects, and Interface Objects. When properly applied Block diagrams are recursively scalable and mathematically (parametrically) simulatable.",
+        },
+        {
+            "model elements": [
         {
             "name": "block",
             "description": "A block is the basic unit of structure in SysML. You can use a block to model any type of entity within your system of interest or in the system's external environment. Note the distinction between definition and instantiation (which SysML refers to as “usage”). This distinction is one of the most fundamental system design concepts, and it's a pattern that recurs often in SysML. Some kinds of model elements (e.g., blocks, value types, constraint blocks) represent definitions of types; other kinds of model elements (e.g., part properties, value properties, constraint properties) represent instances of those types. By analogy, a blueprint of a house is a definition of a type of house; each house a developer builds on a plot of land in accordance with that blueprint is a distinct instance of that type. With that in mind, I reiterate: A block represents a type of entity, and not an instance. For example, you could create a block named DesktopWorkstation in your system model. That block would represent a type that defines a set of properties—such as monitor, keyboard, mouse, CPU, manufacturer, disk space, cost—that are common to all instances. Each desktop workstation that your IT department purchases for each office and cubicle would be a distinct instance of that DesktopWorkstation block. You can easily tell the difference between elements of definition and elements of usage in a system model. Elements of definition have a name only (e.g., DesktopWorkstation); elements of usage have a name and a type, separated by a colon (e.g., SDX1205LJD : DesktopWorkstation). The notation for a block is a rectangle with the stereotype «block» preceding the name in the name compartment. You're required to display a block's name compartment. Often you'll display additional optional compartments that convey the features of the block. Features come in two varieties: structural features (also known as properties) and behavioral features. Here are the optional compartments that you can display: Parts, References, Values, Constraints, Operations, Receptions, Standard ports (in SysML v1.2 and earlier), Flow ports (in SysML v1.2 and earlier), Full ports (in SysML v1.3), Proxy ports (in SysML v1.3), Flow properties (in SysML v1.3), and Structure. The structure compartment is the only compartment that doesn't list features. Rather, it's a graphical compartment that displays a block's internal structure; you can display in that compartment all the same notations you can display on an internal block diagram (IBD). Modelers rarely display this compartment. Note that even though it's legal to display a block's ports in compartments, it's much more common to display ports as small squares that straddle the border of a block",
@@ -111,15 +114,36 @@
             "name": "comment",
             "description": "SysML has a lot of rules (and they all exist to serve the very useful purpose of giving your design unambiguous meaning from one reader to the next). However, you sometimes need to express information on a diagram in an unconstrained way as a block of text. You can do this with a comment. A comment is, in fact, a model element. It consists of a single attribute: a string of text called the body. You can convey any information you need to in the body of a comment, and you can optionally attach a comment to other elements on a diagram to provide additional information about them. You can use comments on any of the nine kinds of SysML diagrams. The notation for a comment is commonly referred to as a note symbol: a rectangle whose upper-right corner is bent. You use a dashed line to attach a comment to other elements. If you need to, you can attach a comment to several model elements simultaneously by using a separate dashed line for each one.Modelers sometimes put freestanding comments with hyperlinks on a diagram to enable readers to quickly navigate to a related diagram in the model (or to an external document). To be clear, though, this capability is a function of the modeling tool you use; not all tools do this. And SysML itself says nothing about this capability. SysML defines some specialized kinds of comments: rationale, problem, and diagram description. These appear as a note symbol with the respective stereotype preceding the body of the comment. Modelers often use rationale comments in conjunction with requirements relationships and allocations."
         }
-    ],
-    "bestPracticesPatterns": [
+        ]
+    },
+    {
+        "bestPracticesPatterns": [
         "Separate Control Objects, Interface Objects, and Data Objects through applying Object Triad Pattern techniques",
         "Nest block hierarchies by alternating between block definition diagrams and internal block diagrams",
         "All control-related activities should be explicitly assigned to Control Object blocks in your system model"
     ],
-    "antiPatterns": [
+        "antiPatterns": [
         "Combine Control Object, Interface Object, and Data Object Blocks",
         "Creating Activity Diagrams that focus solely on the flow of functions without using partitions to show which Control Objects are responsible for managing the system's behavior",
         "Combining the syntax and meaning of Blocks and Activities"
     ]
+    }
+    ],
+    "relationships": [
+    {
+      "type": "CONTAINS",
+      "from": "Block Definition Diagram",
+      "to": "model elements"
+    },
+    {
+      "type": "CONTAINS",
+      "from": "Block Definition Diagram",
+      "to": "bestPracticesPatterns"
+    },
+    {
+      "type": "CONTAINS",
+      "from": "Block Definition Diagram",
+      "to": "antiPatterns"
+    }
+  ]
 }
